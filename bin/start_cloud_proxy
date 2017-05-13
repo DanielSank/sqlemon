@@ -11,9 +11,9 @@ import yaml
 parser = argparse.ArgumentParser(description='Start Cloud SQL proxy')
 
 try:
-    project_name = os.environ['PROJECT_NAME']
+    project_name = os.environ['SQL_PROJECT_NAME']
 except KeyError:
-    print("Set environment variable PROJECT_NAME")
+    print("Set environment variable SQL_PROJECT_NAME")
     raise
 
 with open('./{}/config.yaml'.format(project_name), 'r') as stream:

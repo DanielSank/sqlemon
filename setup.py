@@ -1,12 +1,13 @@
 from distutils.core import setup
-import dtssqltools
+import sqlemon
 
-version = dtssqltools.__version__
-project_name = dtssqltools.__project_name__
+version = sqlemon.__version__
+project_name = sqlemon.__project_name__
 
 
 setup(name=project_name,
       packages=[project_name],
+      scripts=['bin/start_cloud_proxy', 'bin/cloud_sql_proxy'],
       version=version,
       description="Manage sqlalchemy connections to local test and prod db's",
       author='Daniel Sank',
