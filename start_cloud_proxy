@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+
+import argparse
+import os
+
+
+import yaml
+
+
+parser = argparse.ArgumentParser(description='Start Cloud SQL proxy')
+
+try:
+    project_name = os.environ['PROJECT_NAME']
+except KeyError:
+    print("Set environment variable PROJECT_NAME")
+    raise
+
+with open('./{}/config.yaml'.format(project_name), 'r') as stream:
+    config = yaml.load(stream)
+
+print("Starting proxy for project {}".format(project_name))
+os.system("cloud_sql_proxy -instances={} -dir={} -credential_file={}".format(
+    config['INSTANCE_CONNECTION_NAME'],
+    "/tmp/cloudsql",
+    os.path.expanduser('~/.{}/auth-token.json'.format(project_name))))
+
