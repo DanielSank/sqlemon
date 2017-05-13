@@ -1,5 +1,6 @@
+*******
 SQLemon
-=======
+*******
 
 Suppose you're working on a project that uses Google App Engine, Google Cloud SQL, and sqlalchemy.
 In the course of testing, deploying etc., we want to connect to a couple of databases in different ways:
@@ -18,7 +19,9 @@ This package helps solve that problem.
 We assume you have your project's source on your system at ``PROJECT_ROOT/``, where
 ``PROJECT_ROOT`` is probably something like ``~/src/<project_name>``.
 The file layout should look something like this:
-::
+
+.. code-block::
+
     ├── <project_name>/
     │   ├── __init__.py
     │   ├── config.yaml
@@ -57,7 +60,7 @@ Installing this package (into a virtualenv!) provides the command line script ``
 In order for this script (and basically everything else in this package) to work, you must first set the ``SQL_PROJECT_NAME`` environment variable with value ``<project_name>`` (see above file layout).
 
 Release
--------
+*******
 ::
 
     $ python setup.py register -r pypi(test)
