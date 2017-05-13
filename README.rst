@@ -61,5 +61,5 @@ Release
 ::
 
     $ python setup.py register -r pypi(test)
-    $ python setup.py sdist -r pypi(test)
+    $ python setup.py sdist upload -r pypi(test)
 
