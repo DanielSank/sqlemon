@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+
+import argparse
+import os
+
+
+import yaml
+
+
+parser = argparse.ArgumentParser(description='Start SQL client')
+parser.add_argument(
+        '--role',
+        help="Role in which the client is acting")
+args = parser.parse_args()
+role = args.role
+project = os.environ['SQL_PROJECT_NAME']
+
+
+with open(
+        os.path.expanduser('~/.{}/config.yaml'.format(project)), 'r') as stream:
+    config = yaml.load(stream)[role]
+
+with open('{}/config.yaml'.format(project), 'r') as stream:
+    config_local = yaml.load(stream)
+
+
+def connection_string(role):
+    if role == 'cloud':
+        return "mysql --user={} --password={} -S /tmp/cloudsql/{}".format(
+                config['USER'],
+                config['PASSWORD'],
+                config_local['INSTANCE_CONNECTION_NAME'])
+    elif role == 'local':
+        return "mysql --user={} --password={} --host=localhost {}".format(
+                config['USER'],
+                config['PASSWORD'],
+                project)
+    else:
+        raise ValueError("role {} not supported".format(role))
+
+
+os.system(connection_string(role))
+
