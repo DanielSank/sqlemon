@@ -7,7 +7,9 @@ project_name = sqlemon.__project_name__
 
 setup(name=project_name,
       packages=[project_name],
-      scripts=['bin/start_cloud_proxy', 'bin/cloud_sql_proxy'],
+      scripts=['bin/start_cloud_proxy',
+               'bin/cloud_sql_proxy',
+               'bin/start_mysql_client'],
       version=version,
       description="Manage sqlalchemy connections to local test and prod db's",
       author='Daniel Sank',
