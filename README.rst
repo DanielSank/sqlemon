@@ -30,6 +30,7 @@ We assume you have your project's source on your system at ``PROJECT_ROOT/``, wh
 The file layout should look something like this:
 
 .. code-block::
+
     ├── PROJECT_ROOT/
     │    ├── SQL_PROJECT_NAME/  <-- important
     │    │   ├── __init__.py
@@ -48,30 +49,30 @@ You must also have a directory at ``~/.SQL_PROJECT_NAME`` with a couple of files
 This package assumes there are three particular files to be available in your system:
 
 - ``~/.SQL_PROJECT_NAME/config.yaml``
+  ::
 
-.. code-block::
-      ---
-      cloud:
-          USER: "root"
-          PASSWORD: ...
-      local:
-          USER: "root"
-          PASSWORD: ...
-          HOST: "localhost"
-          PORT: 3306
+    ---
+    cloud:
+        USER: "root"
+        PASSWORD: ...
+    local:
+        USER: "root"
+        PASSWORD: ...
+        HOST: "localhost"
+        PORT: 3306
 
 - ``~/.SQL_PROJECT_NAME/auth-token.json``: This is your proxy's user account auth token.
 
 - ``PROJECT_ROOT/SQL_PROJECT_NAME/config.yaml``
+  ::
 
-.. code-block::
       ---
       INSTANCE_CONNECTION_NAME: ...
 
 Installing this package (into a virtualenv!) provides the command line script ``start_cloud_proxy``, which starts the Google Cloud SQL proxy for you.
 
 How to release
-*******
+**************
 ::
 
     $ python setup.py register -r pypi(test)
