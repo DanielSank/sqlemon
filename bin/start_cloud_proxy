@@ -1,27 +1,18 @@
 #!/usr/bin/env python
 
-
 import argparse
 import os
 
-
-import yaml
-
+import sqlemon
 
 parser = argparse.ArgumentParser(description='Start Cloud SQL proxy')
 
-try:
-    project_name = os.environ['SQL_PROJECT_NAME']
-except KeyError:
-    print("Set environment variable SQL_PROJECT_NAME")
-    raise
+project = os.environ['SQLEMON_PROJECT']
 
-with open('./{}/config.yaml'.format(project_name), 'r') as stream:
-    config = yaml.load(stream)
+app_config = sqlemon.get_app_configuration()
 
-print("Starting proxy for project {}".format(project_name))
+print("Starting proxy for project {}".format(project))
 os.system("cloud_sql_proxy -instances={} -dir={} -credential_file={}".format(
-    config['INSTANCE_CONNECTION_NAME'],
+    app_config['env_variables']['INSTANCE_CONNECTION_NAME'],
     "/tmp/cloudsql",
-    os.path.expanduser('~/.{}/auth-token.json'.format(project_name))))
-
+    sqlemon.get_auth_token_filepath(project)))
