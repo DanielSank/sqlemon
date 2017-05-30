@@ -22,8 +22,10 @@ def get_sql_configuration(project_name, db_config):
     return parameters
 
 
-def get_app_configuration():
-    with open('./app.yaml', 'r') as stream:
+def get_app_configuration(path=None):
+    if path is None:
+        path = './app.yaml'
+    with open(path, 'r') as stream:
         config = yaml.load(stream)
     return config
 
@@ -41,7 +43,10 @@ def production_mode():
         return False
 
 
-def get_sqlalchemy_url_for_client(project, db_config=None):
+def get_sqlalchemy_url_for_client(
+        project,
+        db_config=None,
+        app_config_path=None):
     """Get sqlalchemy connection string for client scripts, i.e. alembic.
 
     Args:
@@ -53,7 +58,7 @@ def get_sqlalchemy_url_for_client(project, db_config=None):
     if db_config is None:
         db_config = os.environ['SQLEMON_DB_CONFIG']
     config = get_sql_configuration(project, db_config)
-    app_config = get_app_configuration()
+    app_config = get_app_configuration(app_config_path)
     if db_config == 'cloud':
         return sqlcs.LOCAL_TOOLS_CLOUD.format(
                 app_config['env_variables']['CLOUD_SQL_USER'],
