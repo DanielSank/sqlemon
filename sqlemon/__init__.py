@@ -105,3 +105,17 @@ def get_sqlalchemy_url_for_server(project, password=None):
         how to procede. One option would be to make a .gitignore'd file with the
         local connection info.
         """
+
+
+def visualize_schema(base, outfile_name):
+    from sqlalchemy_schemadisplay import create_schema_graph
+    metadata = base.metadata
+
+    graph = create_schema_graph(
+            metadata=metadata,
+            show_datatypes=True,
+            show_indexes=False,
+            rankdir='LR',
+            concentrate=False)
+    graph.set_ranksep(2.0)
+    graph.write_pdf(outfile_name)
