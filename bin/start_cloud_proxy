@@ -6,8 +6,15 @@ import os
 import sqlemon
 
 parser = argparse.ArgumentParser(description='Start Cloud SQL proxy')
+parser.add_argument(
+        '--project',
+        help="Project name",
+        default=None)
+args = parser.parse_args()
 
-project = os.environ['SQLEMON_PROJECT']
+project = args.project
+if project is None:
+    project = os.environ['SQLEMON_PROJECT']
 
 app_config = sqlemon.get_app_configuration()
 
