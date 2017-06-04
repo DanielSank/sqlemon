@@ -1,10 +1,11 @@
 import os
+import pkg_resources
 
 import sqlemon.connection_strings as sqlcs
 import yaml
 
-__version__ = "0.7.0"
-__project_name__ = "sqlemon"
+
+__version__ = pkg_resources.require('sqlemon')[0].version
 
 
 class IPythonPrettyPrintable(object):

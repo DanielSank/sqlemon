@@ -1,9 +1,7 @@
 from distutils.core import setup
-import sqlemon
 
-version = sqlemon.__version__
-project_name = sqlemon.__project_name__
-
+version = "0.7.0"
+project_name = 'sqlemon'
 
 setup(name=project_name,
       packages=[project_name],
@@ -21,5 +19,11 @@ setup(name=project_name,
           version),
       keywords=['sql'],
       classifiers=[],
+      install_requires=[
+          'sqlalchemy',
+          'alembic',
+          'pyyaml',
+          'sqlalchemy-schemadisplay'
+          ],
 )
 
