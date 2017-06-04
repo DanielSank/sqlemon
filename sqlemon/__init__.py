@@ -3,7 +3,7 @@ import os
 import sqlemon.connection_strings as sqlcs
 import yaml
 
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 __project_name__ = "sqlemon"
 
 
