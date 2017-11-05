@@ -1,4 +1,5 @@
 dist/
+sqlemon.egg-info/
 *.pyc
 *.swp
 MANIFEST
