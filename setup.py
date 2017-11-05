@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = "0.8.1"
+version = "0.8.3"
 project_name = 'sqlemon'
 
 setup(name=project_name,
